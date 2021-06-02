@@ -1,0 +1,15 @@
+{
+  "name": "pdfkit-missing-characters-issue",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fontkit": "^1.8.1",
+    "pdfkit": "^0.12.1"
+  }
+}

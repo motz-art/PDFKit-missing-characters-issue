@@ -1,13 +1,9 @@
 const PDFDocument = require('pdfkit');
 const fs = require('fs');
 
-// Create a document
 let doc = new PDFDocument();
 
-// Pipe its output somewhere, like to a file or HTTP response
-// See below for browser usage
-doc.pipe(fs.createWriteStream('output.pdf'));
-
+doc.pipe(fs.createWriteStream('output-incorrect.pdf'));
 
 const text =
 "客戶訂單\n<Not Specified>\n對客戶非常重要\n可以部分發貨\n請運送至少333件物品\n1月5日前發貨\nTaiwan";
@@ -19,24 +15,21 @@ doc
 
 doc.end();
 
+// Correctly rendered.
 
-// // Create a document
-// doc = new PDFDocument();
+doc = new PDFDocument();
 
-// // Pipe its output somewhere, like to a file or HTTP response
-// // See below for browser usage
-// doc.pipe(fs.createWriteStream('output2.pdf'));
+doc.pipe(fs.createWriteStream('output-correct.pdf'));
 
+const text2 =
+"客戶訂單\n對客戶非常重要\n可以部分發貨\n請運送至少333件物品\n1月5日前發貨\nTaiwan\n<Not Specified>";
 
-// const text2 =
-// "客戶訂單\n對客戶非常重要\n可以部分發貨\n請運送至少333件物品\n1月5日前發貨\nTaiwan\n<Not Specified>";
+doc
+  .font('./fonts/NotoSansCJK-Regular.ttc', 'NotoSansCJKjp-Regular')
+  .fontSize(11)
+  .text(text2, 100, 100);
 
-// doc
-//   .font('./fonts/NotoSansCJK-Regular.ttc', 'NotoSansCJKjp-Regular')
-//   .fontSize(11)
-//   .text(text2, 100, 100);
-
-// doc.end();
+doc.end();
 
 
 // // Create a document
